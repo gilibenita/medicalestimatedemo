@@ -15,7 +15,8 @@ if (!prNumber) {
 }
 
 // Get diff for the PR branch compared to base
-const diff = sh("git diff origin/${{ github.base_ref }}...HEAD || true");
+const baseRef = process.env.GITHUB_BASE_REF; // e.g. "main"
+const diff = sh(`git diff origin/${baseRef}...HEAD || true`);
 
 // Keep it small so it fits model context
 const diffSnippet = diff.slice(0, 12000);

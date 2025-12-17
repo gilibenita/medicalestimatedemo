@@ -11,15 +11,12 @@ permissions:
 jobs:
   codex:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
 
@@ -29,7 +26,5 @@ jobs:
       - name: Run Codex PR review
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo "${GITHUB_TOKEN}" | gh auth login --with-token
-          node scripts/codex-pr-review.js
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/codex-pr-review.js

@@ -1,0 +1,17 @@
+name: Codex Assistant
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  codex:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Codex script
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          echo "Codex workflow is running"

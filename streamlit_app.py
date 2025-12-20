@@ -8,6 +8,19 @@ import json
 import re
 from openai import OpenAI
 
+# Hide Streamlit menu buttons
+st.set_page_config(
+    page_title="Medical Estimate Demo",
+    page_icon="🏥",
+    layout="wide",
+    initial_sidebar_state="auto",
+    menu_items={
+        'Get Help': None,
+        'Report a bug': None,
+        'About': None
+    }
+)
+
 
 def _plain_language_cpt_help(cpt: str, description: str) -> str:
     cpt_str = (str(cpt) if cpt is not None else '').strip()

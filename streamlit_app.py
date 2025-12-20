@@ -21,6 +21,20 @@ st.set_page_config(
     }
 )
 
+# Hide GitHub, Deploy, and Manage App buttons
+hide_streamlit_style = """
+<style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    [data-testid="stToolbar"] {display: none;}
+    .stDeployButton {display: none;}
+    [data-testid="stStatusWidget"] {display: none;}
+    button[kind="header"] {display: none;}
+</style>
+"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 
 def _plain_language_cpt_help(cpt: str, description: str) -> str:
     cpt_str = (str(cpt) if cpt is not None else '').strip()

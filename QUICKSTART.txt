@@ -1,0 +1,17 @@
+🚀 QUICK START - Deploy in 2 Minutes!
+==========================================
+
+Want your friend to see this app? Follow these 3 steps:
+
+1️⃣  Go to: https://share.streamlit.io/
+
+2️⃣  Click "New app" and fill in:
+    • Repository: gilibenita/medicalestimatedemo
+    • Branch: main
+    • File: streamlit_app.py
+
+3️⃣  Click "Deploy!" and wait 1-2 minutes
+
+🎉 Done! Share the URL with your friend!
+
+📖 Need more help? See DEPLOYMENT.md

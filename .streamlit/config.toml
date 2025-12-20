@@ -1,0 +1,18 @@
+[theme]
+# You can customize your app's theme here
+# Uncomment and modify these values as needed
+# primaryColor = "#F63366"
+# backgroundColor = "#FFFFFF"
+# secondaryBackgroundColor = "#F0F2F6"
+# textColor = "#262730"
+# font = "sans serif"
+
+[server]
+# Server configuration
+headless = true
+enableCORS = false
+enableXsrfProtection = true
+
+[browser]
+# Browser configuration
+gatherUsageStats = false

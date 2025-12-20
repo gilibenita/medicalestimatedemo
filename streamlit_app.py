@@ -43,6 +43,15 @@ hide_streamlit_style = """
     /* Hide the "Made with Streamlit" and "Manage app" badges */
     footer, .stApp > footer {visibility: hidden; height: 0px;}
     .viewerBadge_container__1QSob, .viewerBadge_link__1S137 {display: none;}
+    /* Additional rules to hide bottom left badge */
+    div[data-testid="stBottom"] {display: none;}
+    .stApp > footer {display: none;}
+    a[target="_blank"][href*="streamlit.io"] {display: none;}
+    div[class*="viewerBadge"] {display: none !important;}
+    section[data-testid="stSidebar"] > div:first-child {display: none;}
+    /* Nuclear option - hide all bottom badges */
+    .main .block-container {padding-bottom: 1rem;}
+    iframe {display: none;}
 </style>
 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)

@@ -31,6 +31,18 @@ hide_streamlit_style = """
     .stDeployButton {display: none;}
     [data-testid="stStatusWidget"] {display: none;}
     button[kind="header"] {display: none;}
+    [data-testid="stSidebarNav"] {display: none;}
+    [data-testid="stDecoration"] {display: none;}
+    .css-1544g2n {display: none;}
+    [data-testid="manage-app"] {display: none;}
+    .viewerBadge_container__1QSob {display: none;}
+    .styles_viewerBadge__1yB5_ {display: none;}
+    .viewerBadge_link__1S137 {display: none;}
+    .viewerBadge_text__1JaDK {display: none;}
+    [data-testid="stAppViewBlockContainer"] > div:first-child {display: none;}
+    /* Hide the "Made with Streamlit" and "Manage app" badges */
+    footer, .stApp > footer {visibility: hidden; height: 0px;}
+    .viewerBadge_container__1QSob, .viewerBadge_link__1S137 {display: none;}
 </style>
 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)

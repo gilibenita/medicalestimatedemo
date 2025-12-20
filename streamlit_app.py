@@ -31,27 +31,6 @@ hide_streamlit_style = """
     .stDeployButton {display: none;}
     [data-testid="stStatusWidget"] {display: none;}
     button[kind="header"] {display: none;}
-    [data-testid="stSidebarNav"] {display: none;}
-    [data-testid="stDecoration"] {display: none;}
-    .css-1544g2n {display: none;}
-    [data-testid="manage-app"] {display: none;}
-    .viewerBadge_container__1QSob {display: none;}
-    .styles_viewerBadge__1yB5_ {display: none;}
-    .viewerBadge_link__1S137 {display: none;}
-    .viewerBadge_text__1JaDK {display: none;}
-    [data-testid="stAppViewBlockContainer"] > div:first-child {display: none;}
-    /* Hide the "Made with Streamlit" and "Manage app" badges */
-    footer, .stApp > footer {visibility: hidden; height: 0px;}
-    .viewerBadge_container__1QSob, .viewerBadge_link__1S137 {display: none;}
-    /* Additional rules to hide bottom left badge */
-    div[data-testid="stBottom"] {display: none;}
-    .stApp > footer {display: none;}
-    a[target="_blank"][href*="streamlit.io"] {display: none;}
-    div[class*="viewerBadge"] {display: none !important;}
-    section[data-testid="stSidebar"] > div:first-child {display: none;}
-    /* Nuclear option - hide all bottom badges */
-    .main .block-container {padding-bottom: 1rem;}
-    iframe {display: none;}
 </style>
 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
@@ -871,8 +850,8 @@ if pricing_data is not None:
         st.markdown("### About")
         st.info("Search by procedure name or CPT code to find costs at NYU Langone Hospital.")
     
-    # Main tabs
-    tab1, tab2, tab3, tab4 = st.tabs(["🏥 Symptom Estimator", "🔍 Search Procedures", "💊 CPT Code Lookup", "📊 Build Estimate"])
+    # Main tabs (Build Estimate tab temporarily hidden)
+    tab1, tab2, tab3 = st.tabs(["🏥 Symptom Estimator", "🔍 Search Procedures", "💊 CPT Code Lookup"])
 
     # TAB 1: Symptom Estimator (AI-ready)
     with tab1:
@@ -1025,84 +1004,84 @@ if pricing_data is not None:
             else:
                 st.error(f"❌ CPT code '{cpt_input}' not found")
     
-    # TAB 4: Manual Estimate Builder
-    with tab4:
-        st.header("Build Your Own Estimate")
-        st.markdown("Search and add multiple procedures to calculate total cost")
-        
-        # Initialize session state
-        if 'cart' not in st.session_state:
-            st.session_state.cart = []
-        
-        # Search to add items
-        col1, col2 = st.columns([3, 1])
-        with col1:
-            add_search = st.text_input(
-                "Search for procedure to add",
-                placeholder="e.g., xray, blood test",
-                key="cart_search"
-            )
-        
-        if add_search:
-            mask = pricing_data['description'].astype(str).str.contains(add_search, case=False, na=False)
-            search_results = pricing_data[mask].head(5)
-            
-            if len(search_results) > 0:
-                st.markdown("**Click to add:**")
-                for idx, row in search_results.iterrows():
-                    col1, col2, col3 = st.columns([3, 1, 1])
-                    with col1:
-                        st.write(f"{row['description']}")
-                    with col2:
-                        price = row[price_col]
-                        if pd.notna(price):
-                            st.write(f"${price:,.2f}")
-                        else:
-                            st.write("N/A")
-                    with col3:
-                        if st.button("➕ Add", key=f"add_{idx}"):
-                            st.session_state.cart.append({
-                                'cpt': row['cpt code number'],
-                                'description': row['description'],
-                                'price': row[price_col] if pd.notna(row[price_col]) else 0
-                            })
-                            st.rerun()
-        
-        # Display cart
-        if st.session_state.cart:
-            st.markdown("---")
-            st.subheader("Your Estimate:")
-            
-            total = 0
-            for i, item in enumerate(st.session_state.cart):
-                col1, col2, col3 = st.columns([3, 1, 1])
-                with col1:
-                    st.write(f"**{item['description']}**")
-                    _render_cpt_info(
-                        "CPT",
-                        item['cpt'],
-                        item['description'],
-                        key=f"cart::{i}",
-                    )
-                with col2:
-                    st.write(f"${item['price']:,.2f}")
-                with col3:
-                    if st.button("🗑️", key=f"remove_{i}"):
-                        st.session_state.cart.pop(i)
-                        st.rerun()
-                
-                total += item['price']
-            
-            st.markdown("---")
-            col1, col2 = st.columns([2, 1])
-            with col2:
-                st.metric("💰 TOTAL", f"${total:,.2f}")
-            
-            if st.button("🔄 Clear All"):
-                st.session_state.cart = []
-                st.rerun()
-        else:
-            st.info("👆 Search for procedures above and click 'Add' to build your estimate")
+    # TAB 4: Manual Estimate Builder (HIDDEN - code preserved for future use)
+    # with tab4:
+    #     st.header("Build Your Own Estimate")
+    #     st.markdown("Search and add multiple procedures to calculate total cost")
+    #     
+    #     # Initialize session state
+    #     if 'cart' not in st.session_state:
+    #         st.session_state.cart = []
+    #     
+    #     # Search to add items
+    #     col1, col2 = st.columns([3, 1])
+    #     with col1:
+    #         add_search = st.text_input(
+    #             "Search for procedure to add",
+    #             placeholder="e.g., xray, blood test",
+    #             key="cart_search"
+    #         )
+    #     
+    #     if add_search:
+    #         mask = pricing_data['description'].astype(str).str.contains(add_search, case=False, na=False)
+    #         search_results = pricing_data[mask].head(5)
+    #         
+    #         if len(search_results) > 0:
+    #             st.markdown("**Click to add:**")
+    #             for idx, row in search_results.iterrows():
+    #                 col1, col2, col3 = st.columns([3, 1, 1])
+    #                 with col1:
+    #                     st.write(f"{row['description']}")
+    #                 with col2:
+    #                     price = row[price_col]
+    #                     if pd.notna(price):
+    #                         st.write(f"${price:,.2f}")
+    #                     else:
+    #                         st.write("N/A")
+    #                 with col3:
+    #                     if st.button("➕ Add", key=f"add_{idx}"):
+    #                         st.session_state.cart.append({
+    #                             'cpt': row['cpt code number'],
+    #                             'description': row['description'],
+    #                             'price': row[price_col] if pd.notna(row[price_col]) else 0
+    #                         })
+    #                         st.rerun()
+    #     
+    #     # Display cart
+    #     if st.session_state.cart:
+    #         st.markdown("---")
+    #         st.subheader("Your Estimate:")
+    #         
+    #         total = 0
+    #         for i, item in enumerate(st.session_state.cart):
+    #             col1, col2, col3 = st.columns([3, 1, 1])
+    #             with col1:
+    #                 st.write(f"**{item['description']}**")
+    #                 _render_cpt_info(
+    #                     "CPT",
+    #                     item['cpt'],
+    #                     item['description'],
+    #                     key=f"cart::{i}",
+    #                 )
+    #             with col2:
+    #                 st.write(f"${item['price']:,.2f}")
+    #             with col3:
+    #                 if st.button("🗑️", key=f"remove_{i}"):
+    #                     st.session_state.cart.pop(i)
+    #                     st.rerun()
+    #             
+    #             total += item['price']
+    #         
+    #         st.markdown("---")
+    #         col1, col2 = st.columns([2, 1])
+    #         with col2:
+    #             st.metric("💰 TOTAL", f"${total:,.2f}")
+    #         
+    #         if st.button("🔄 Clear All"):
+    #             st.session_state.cart = []
+    #             st.rerun()
+    #     else:
+    #         st.info("👆 Search for procedures above and click 'Add' to build your estimate")
 
 else:
     st.error("Could not load pricing data. Make sure the CSV file is in your project directory.")

@@ -1,0 +1,12 @@
+[client]
+showSidebarNavigation = false
+
+[ui]
+hideTopBar = false
+
+[server]
+enableCORS = false
+enableXsrfProtection = true
+
+[theme]
+base = "light"

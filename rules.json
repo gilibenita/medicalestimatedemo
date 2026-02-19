@@ -1,0 +1,36 @@
+{
+  "categories": {
+    "uri_ent": {
+      "match_any": [
+        "throat", "sore throat", "pharyngitis", "tonsillitis", "cough", "fever", "chills",
+        "congestion", "runny nose", "headache", "sinus", "flu", "influenza", "covid"
+      ],
+      "prefer": [
+        "office", "visit", "evaluation", "e/m", "strep", "rapid strep", "throat culture",
+        "flu", "influenza", "covid", "antigen", "pcr", "respiratory", "panel"
+      ],
+      "avoid_without_red_flags": ["ct", "mri"]
+    },
+    "musculoskeletal": {
+      "match_any": [
+        "ankle", "knee", "hip", "shoulder", "elbow", "wrist", "hand", "foot",
+        "sprain", "fracture", "injury", "swelling"
+      ],
+      "prefer": ["xray", "x-ray", "radiograph", "xr", "ankle", "knee", "hip", "shoulder", "elbow", "wrist", "hand", "foot"]
+    },
+    "chest": {
+      "match_any": ["chest pain", "shortness of breath", "sob"],
+      "prefer": ["xray", "x-ray", "chest", "ecg", "ekg", "troponin"]
+    },
+    "abdominal": {
+      "match_any": ["abdominal", "stomach pain", "belly pain", "nausea", "vomit"],
+      "prefer": ["ultrasound", "ct", "abdomen", "cbc", "cmp", "lipase", "urinalysis"]
+    },
+    "general": {"match_any": [], "prefer": ["visit", "evaluation", "exam"]}
+  },
+  "red_flags": [
+    "worst headache", "thunderclap", "focal weakness", "slurred speech", "confusion",
+    "loss of consciousness", "seizure", "stiff neck", "meningitis", "neuro deficit",
+    "severe head injury", "high fever", "immunocompromised", "cancer", "anticoagulant"
+  ]
+}

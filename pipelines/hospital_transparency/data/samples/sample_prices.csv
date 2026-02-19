@@ -1,0 +1,3 @@
+Hospital,Facility Identifier,CPT Code,Code System,Description,Gross Charge,Cash Price,Minimum Negotiated Rate,Maximum Negotiated Rate,Payer,Plan,Negotiated Rate,Rate Type
+Sample NYC Hospital,FAC-001,99213,CPT,Office visit,"$250.00",200,150,225,Example Health,Gold,175,Fee Schedule
+Sample NYC Hospital,FAC-001,93000,CPT,Electrocardiogram,"$180.00",140,110,170,Example Health,Silver,130,Case Rate

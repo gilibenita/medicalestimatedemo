@@ -1,0 +1,36 @@
+[
+  {
+    "hospital": {
+      "name": "Sample NYC Hospital"
+    },
+    "facility_identifier": "FAC-001",
+    "cpt_code": "99213",
+    "code_system": "cpt",
+    "service_description": "Office visit",
+    "standard_charge": "$250.00",
+    "discounted_cash_price": "200",
+    "minimum_negotiated_rate": 150,
+    "maximum_negotiated_rate": 225,
+    "payer_name": "Example Health",
+    "plan_name": "Gold",
+    "negotiated_rate_amount": 175,
+    "negotiated_type": "Fee Schedule"
+  },
+  {
+    "hospital": {
+      "name": "Sample NYC Hospital"
+    },
+    "facility_identifier": "FAC-001",
+    "cpt_code": "93000",
+    "code_system": "cpt",
+    "service_description": "Electrocardiogram",
+    "standard_charge": "$180.00",
+    "discounted_cash_price": "140",
+    "minimum_negotiated_rate": 110,
+    "maximum_negotiated_rate": 170,
+    "payer_name": "Example Health",
+    "plan_name": "Silver",
+    "negotiated_rate_amount": 130,
+    "negotiated_type": "Case Rate"
+  }
+]

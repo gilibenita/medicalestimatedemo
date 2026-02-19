@@ -1,0 +1,13 @@
+drive_root_folder_id: "PUT_FOLDER_ID_HERE"
+download_cache_root: "./pipelines/hospital_transparency/data/cache/raw"
+local_processed_root: "./pipelines/hospital_transparency/data/processed"
+json_subdir_name: "json"
+csv_subdir_name: "csv"
+converted_json_drive_subdir_name: "csv/converted_from_json"
+standardized_drive_subdir_name: "processed/standardized"
+reports_drive_subdir_name: "metadata/reports"
+sample_mode: true
+sample_max_rows: 5000
+max_files: 100
+upload_outputs_to_drive: true
+delete_local_cache_after_upload: true

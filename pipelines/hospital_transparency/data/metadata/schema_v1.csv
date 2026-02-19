@@ -1,0 +1,15 @@
+canonical_column,required,type,description
+hospital_name,true,string,Hospital or health system display name
+facility_id,false,string,Facility identifier when available
+source_file,true,string,Original source filename that produced this row
+code,true,string,Billing code or item identifier
+code_type,true,string,Code system (for example CPT HCPCS DRG NDC)
+description,true,string,Human-readable description of the billed service
+gross_charge,false,float,Published gross charge before discounts
+cash_price,false,float,Self-pay or cash discounted price
+min_negotiated,false,float,Minimum negotiated rate across plans
+max_negotiated,false,float,Maximum negotiated rate across plans
+payer,false,string,Payer or insurer name
+plan,false,string,Plan name
+negotiated_rate,false,float,Plan-level negotiated rate
+rate_type,false,string,Type of rate (fee schedule case rate per diem percent of charge)

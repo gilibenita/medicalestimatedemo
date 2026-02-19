@@ -1,1 +1,7 @@
 .env
+pipelines/hospital_transparency/data/cache/
+pipelines/hospital_transparency/data/processed/
+pipelines/hospital_transparency/.env
+pipelines/hospital_transparency/**/service_account.json
+pipelines/hospital_transparency/**/token.json
+pipelines/hospital_transparency/**/credentials*.json

@@ -2,3 +2,12 @@ streamlit
 pandas
 openai
 python-dotenv
+pyyaml
+google-api-python-client
+google-auth
+google-auth-httplib2
+google-auth-oauthlib
+polars
+duckdb
+tqdm
+pytest

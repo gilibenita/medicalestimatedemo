@@ -34,8 +34,7 @@ def resolve_repo_path(path_str: str | Path) -> Path:
 
 def load_config(config_path: str | Path | None = None) -> Dict[str, Any]:
     """Load YAML config and apply environment overrides."""
-    load_dotenv()
-    load_dotenv(PIPELINE_ROOT / ".env")
+    load_dotenv(PIPELINE_ROOT / ".env", override=False)
 
     config_file = Path(config_path) if config_path else DEFAULT_CONFIG_PATH
     config_file = config_file if config_file.is_absolute() else (REPO_ROOT / config_file).resolve()

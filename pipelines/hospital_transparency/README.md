@@ -64,19 +64,25 @@ pipelines/hospital_transparency/
 4. Create and download a JSON key.
 5. Share the target Drive root folder with the service account email (Editor access).
 
-## Codespaces Credentials Setup
+## Codespaces Credentials Setup (Secure Pattern)
 
 The scripts use service-account auth only (no browser login flow by default).
 
-1. Add your JSON key file to a secure path in the Codespace (for example `/workspaces/.secrets/service_account.json`).
-2. Set environment variable:
+1. **Do not commit the JSON key.** Keep it outside the repo checkout (for example `~/.secrets/service_account.json`).
+2. Store the key in a secrets manager (GitHub Codespaces Secret, GitHub Actions Secret, 1Password, etc.).
+3. In Codespaces, write the secret value to a locked-down file at runtime:
    ```bash
-   export GOOGLE_APPLICATION_CREDENTIALS=/workspaces/.secrets/service_account.json
+   mkdir -p ~/.secrets
+   printf '%s' "$GCP_SERVICE_ACCOUNT_JSON" > ~/.secrets/service_account.json
+   chmod 600 ~/.secrets/service_account.json
    ```
-3. Optionally set:
+4. Set environment variables:
    ```bash
-   export GDRIVE_ROOT_FOLDER_ID=your_drive_root_id
+   export GOOGLE_APPLICATION_CREDENTIALS=~/.secrets/service_account.json
+   export GDRIVE_ROOT_FOLDER_ID=your_drive_root_id  # optional override of config.yml
    ```
+
+> Tip: if your secret store requires single-line values, store a base64-encoded JSON value and decode it before writing the file.
 
 ## Run
 

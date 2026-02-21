@@ -5,3 +5,6 @@ pipelines/hospital_transparency/.env
 pipelines/hospital_transparency/**/service_account.json
 pipelines/hospital_transparency/**/token.json
 pipelines/hospital_transparency/**/credentials*.json
+
+# Local secret material
+.secrets/

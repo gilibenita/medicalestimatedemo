@@ -92,6 +92,18 @@ def require_service_account_credentials() -> Path:
     if not creds_path.exists():
         raise RuntimeError(f"GOOGLE_APPLICATION_CREDENTIALS path does not exist: {creds_path}")
 
+    try:
+        creds_path.relative_to(REPO_ROOT)
+        LOGGER.warning(
+            "Service-account credential path resolves inside the git repository: %s. "
+            "Prefer storing credentials in an external secrets directory (for example ~/.secrets) "
+            "to reduce accidental commits.",
+            creds_path,
+        )
+    except ValueError:
+        # Expected case: credential file lives outside the repository tree.
+        pass
+
     return creds_path
 
 
